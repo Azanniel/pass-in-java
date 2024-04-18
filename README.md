@@ -17,6 +17,6 @@ Em construção...
 
 Material complementar para ajudar no desenvolvimento da aplicação:
 
-- [Guia do evento]([https://efficient-sloth-d85.notion.site/NLW-UNITE-bad7b350c332474d8f5e3b717f6808a6](https://efficient-sloth-d85.notion.site/Java-62cdd7f5fecf4947a64631ec6a324a09))
+- [Guia do evento](https://efficient-sloth-d85.notion.site/Java-62cdd7f5fecf4947a64631ec6a324a09)
 - [Figma do projeto](https://www.figma.com/community/file/1356738933008624188)
 - [Link para Wallpapers no Google Drive.](https://drive.google.com/drive/folders/1X_5IHecFHipok-ooBYNufNxcrmsm4skW)
