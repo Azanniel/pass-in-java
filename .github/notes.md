@@ -17,7 +17,7 @@ No java temos o que chamamos de JVM que é a Máquina Virtual Java que interpret
 
 O Spring é um framework para o desenvolvimento de aplicações java que estabelece uma série de padrões e facilita o desenvolvimento de aplicações java. Dentro do Spring existe um módulo exclusivo para o desenvolvimento de aplicações web.
 
-O Spring Boot facilita a criação de aplicativos independentes baseados em Spring de nível de produção que você pode "simplesmente executar".
+O Spring Boot facilita a criação de aplicativos independentes baseados em Spring de nível de produção que você pode "simplesmente executar". o Spring Boot é uma extensão do Spring Framework que traz diversos recursos pré configurados facilitando e acelerando o processo de manutenção e setup.
 
 Para criar um projeto (como no caso desse) utilizamos o [spring initializr](https://start.spring.io/), nele (usando *maven*) adicionamos as seguintes dependências:
 - Spring Web -> Módulo exclusivo para criação de aplicações Web
