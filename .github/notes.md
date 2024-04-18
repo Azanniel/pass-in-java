@@ -27,3 +27,27 @@ Para criar um projeto (como no caso desse) utilizamos o [spring initializr](http
 - JPA -> Persistir dados em armazenamentos SQL com a API Java Persistence usando Spring Data e Hibernate
 
 Após o setup das dependências e do preenchimento das informações seu projeto vai estar criado e pronto para uso.
+
+## 🎲 Banco de dados
+
+Para o projeto atual será utilizado o HyperSQL (será utilizado por conta da simplicidade), um banco de dados escrito em Java, que pode ser utilizado em memória ou baseado em arquivo. Ele é super leve e tem suporte a multi thread.
+
+Para adicionar o HyperSQL na aplicação é necessário adicionar a dependência dele no pom.xml.
+
+O pom.xml é um arquivo de configuração do Maven que contém os metadados de um projeto. O pom.xml é a base de um projeto Maven e contém todas as informações sobre o projeto e dependências que são importantes para a execução do projeto
+
+Logo, dentro do pom.xml, na categoria das dependências, adicione:
+
+```xml
+<dependency>
+    <groupId>org.hsqldb</groupId>
+    <artifactId>hsqldb</artifactId>
+    <version>2.7.1</version>
+</dependency>
+```
+É importante para que o HyperSQL use o armazenamento em disco a configuração básica dele para isso em `application.prperties`:
+
+```
+spring.datasource.driver-class-name=org.hsqldb.jdbc.JDBCDriver
+spring.datasource.url=jdbc:hsqldb:file:src/main/resources/database/myDb;shutdown=true
+```
