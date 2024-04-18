@@ -6,7 +6,7 @@ O pass.in é uma aplicação de **gestão de participantes em eventos presenciai
 
 As especificações e anotações realizadas durante o desenvolvimento podem ser encontradas nas documentações abaixo:
 
-- [Especificação](#)
+- [Especificação](./.github/requirements.md)
 - [Anotações](#)
 
 ## 🚀 Como executar localmente
