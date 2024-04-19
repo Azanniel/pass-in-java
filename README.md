@@ -11,7 +11,13 @@ As especificações e anotações realizadas durante o desenvolvimento podem ser
 
 ## 🚀 Como executar localmente
 
-Em construção...
+Após clonar o projeto com `git clone https://github.com/Azanniel/pass-in-java.git`, siga os passos:
+
+- Utilize o *IntelliJ IDEA Community*, abra-o;
+- Na tela inicial escolha a opção para abrir o projeto;
+- Selecione a pasta clonada;
+- Entre no arquivo `PassInApplication.java`, note que aparece um botão para execução do arquivo no canto superior direito;
+- Clique no botão para executar o projeto.
 
 ## 📦 Recursos
 
