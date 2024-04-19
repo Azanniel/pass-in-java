@@ -51,3 +51,7 @@ Logo, dentro do pom.xml, na categoria das dependências, adicione:
 spring.datasource.driver-class-name=org.hsqldb.jdbc.JDBCDriver
 spring.datasource.url=jdbc:hsqldb:file:src/main/resources/database/myDb;shutdown=true
 ```
+
+## 📌 Migrações
+
+As `migrations` são os códigos em SQL que serão responsáveis por controlar as estruturas do nosso banco de dados e permitir o versionamento para controle temporal das mudanças.
