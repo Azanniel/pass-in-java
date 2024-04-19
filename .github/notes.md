@@ -55,3 +55,5 @@ spring.datasource.url=jdbc:hsqldb:file:src/main/resources/database/myDb;shutdown
 ## 📌 Migrações
 
 As `migrations` são os códigos em SQL que serão responsáveis por controlar as estruturas do nosso banco de dados e permitir o versionamento para controle temporal das mudanças.
+
+A escrita das migrações deve ser feita dentro da pasta `db.migration` e é importante que a aplicação não esteja rodando, pois o flyway identifica as migrações de forma automática e executa elas ao iniciar a aplicação. Já sua padronização deve seguir o seguinte exemplo `V1__name-of-the-migration`, sempre separando por versão da base de dados e um nome para migração.
