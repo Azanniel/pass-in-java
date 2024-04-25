@@ -28,10 +28,11 @@ public class EventService {
 
     public EventIdDTO createEvent(EventRequestDTO eventDto) {
         Event newEvent = new Event();
+
         newEvent.setTitle(eventDto.title());
         newEvent.setDetails(eventDto.details());
         newEvent.setMaximumAttendees(eventDto.maximumAttendees());
-        newEvent.setSlug(createSlug(eventDto.title()));
+        newEvent.setSlug(this.createSlug(eventDto.title()));
 
         this.eventRepository.save(newEvent);
 

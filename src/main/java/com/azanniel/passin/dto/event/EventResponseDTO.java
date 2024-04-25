@@ -1,7 +1,9 @@
 package com.azanniel.passin.dto.event;
 
 import com.azanniel.passin.domain.event.Event;
+import lombok.Getter;
 
+@Getter
 public class EventResponseDTO {
     EventDetailDTO event;
 
