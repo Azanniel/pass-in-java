@@ -1,8 +1,10 @@
 package com.azanniel.passin.controllers;
 
+import com.azanniel.passin.dto.attendee.AttendeesListResponseDTO;
 import com.azanniel.passin.dto.event.EventIdDTO;
 import com.azanniel.passin.dto.event.EventRequestDTO;
 import com.azanniel.passin.dto.event.EventResponseDTO;
+import com.azanniel.passin.services.AttendeeService;
 import com.azanniel.passin.services.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class EventController {
     private final EventService eventService;
+    private final AttendeeService attendeeService;
 
     @GetMapping("/{eventId}")
     public ResponseEntity<EventResponseDTO> getEvent(@PathVariable String eventId) {
@@ -29,5 +32,11 @@ public class EventController {
         var uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.eventId()).toUri();
 
         return ResponseEntity.created(uri).body(eventIdDTO);
+    }
+
+    @GetMapping("/attendees/{eventId}")
+    public ResponseEntity<AttendeesListResponseDTO> getEventAttendees(@PathVariable String eventId) {
+        AttendeesListResponseDTO attendeesListResponse = this.attendeeService.getEventsAttendee(eventId);
+        return ResponseEntity.ok(attendeesListResponse);
     }
 }
