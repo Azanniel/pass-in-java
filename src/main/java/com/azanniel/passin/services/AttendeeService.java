@@ -1,13 +1,18 @@
 package com.azanniel.passin.services;
 
 import com.azanniel.passin.domain.attendee.Attendee;
+import com.azanniel.passin.domain.attendee.exceptions.AttendeeAlreadyExistsException;
+import com.azanniel.passin.domain.attendee.exceptions.AttendeeNotFoundException;
 import com.azanniel.passin.domain.checkin.CheckIn;
+import com.azanniel.passin.dto.attendee.AttendeeBadgeResponseDTO;
 import com.azanniel.passin.dto.attendee.AttendeeDetails;
 import com.azanniel.passin.dto.attendee.AttendeesListResponseDTO;
+import com.azanniel.passin.dto.attendee.AttendeeBadgeDTO;
 import com.azanniel.passin.repositories.AttendeeRepository;
 import com.azanniel.passin.repositories.CheckInRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,4 +40,26 @@ public class AttendeeService {
 
         return new AttendeesListResponseDTO(attendeeDetails);
     }
+
+    public void verifyAttendeeSubscription(String email, String eventId) {
+        Optional<Attendee> isAttendeeRegistered = this.attendeeRepository.findByEventIdAndEmail(eventId, email);
+
+        if(isAttendeeRegistered.isPresent()) {
+            throw new AttendeeAlreadyExistsException();
+        }
+    }
+
+    public AttendeeBadgeResponseDTO getAttendeeBadge(String attendeeId, UriComponentsBuilder uriComponentsBuilder) {
+        Attendee attendee = this.attendeeRepository.findById(attendeeId).orElseThrow(() -> new AttendeeNotFoundException(attendeeId));
+        var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/check-in").buildAndExpand(attendeeId).toUri();
+        AttendeeBadgeDTO attendeeBadgeDTO = new AttendeeBadgeDTO(attendee.getName(), attendee.getEmail(), uri.toString(), attendee.getEvent().getId());
+
+        return new AttendeeBadgeResponseDTO(attendeeBadgeDTO);
+    }
+
+    public Attendee registerAttendee(Attendee newAttendee) {
+        this.attendeeRepository.save(newAttendee);
+        return newAttendee;
+    };
+
 }
