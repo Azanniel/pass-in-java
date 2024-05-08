@@ -9,7 +9,6 @@ import com.azanniel.passin.dto.attendee.AttendeeDetails;
 import com.azanniel.passin.dto.attendee.AttendeesListResponseDTO;
 import com.azanniel.passin.dto.attendee.AttendeeBadgeDTO;
 import com.azanniel.passin.repositories.AttendeeRepository;
-import com.azanniel.passin.repositories.CheckInRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,7 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AttendeeService {
     private final AttendeeRepository attendeeRepository;
-    private final CheckInRepository checkInRepository;
+    private final CheckInService checkInService;
 
     public List<Attendee> getAllAttendeesFromEvent(String eventId) {
         return this.attendeeRepository.findByEventId(eventId);
@@ -32,7 +31,7 @@ public class AttendeeService {
         List<Attendee> attendeeList = this.getAllAttendeesFromEvent(eventId);
 
         List<AttendeeDetails> attendeeDetails = attendeeList.stream().map(attendee -> {
-            Optional<CheckIn> checkIn = this.checkInRepository.findByAttendeeId(attendee.getId());
+            Optional<CheckIn> checkIn = this.checkInService.getCheckIn(attendee.getId());
             LocalDateTime checkedInAt = checkIn.<LocalDateTime>map(CheckIn::getCreatedAt).orElse(null);
 
             return new AttendeeDetails(attendee.getId(), attendee.getName(), attendee.getEmail(), attendee.getCreatedAt(), checkedInAt);
@@ -61,5 +60,10 @@ public class AttendeeService {
         this.attendeeRepository.save(newAttendee);
         return newAttendee;
     };
+
+    public void checkInAttendee(String attendeeId) {
+        Attendee attendee = this.attendeeRepository.findById(attendeeId).orElseThrow(() -> new AttendeeNotFoundException(attendeeId));
+        this.checkInService.registerCheckInAttendee(attendee);
+    }
 
 }
