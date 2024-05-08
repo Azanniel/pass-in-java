@@ -1,5 +1,7 @@
 package com.azanniel.passin.controllers;
 
+import com.azanniel.passin.dto.attendee.AttendeeIdDTO;
+import com.azanniel.passin.dto.attendee.AttendeeRequestDTO;
 import com.azanniel.passin.dto.attendee.AttendeesListResponseDTO;
 import com.azanniel.passin.dto.event.EventIdDTO;
 import com.azanniel.passin.dto.event.EventRequestDTO;
@@ -38,5 +40,14 @@ public class EventController {
     public ResponseEntity<AttendeesListResponseDTO> getEventAttendees(@PathVariable String eventId) {
         AttendeesListResponseDTO attendeesListResponse = this.attendeeService.getEventsAttendee(eventId);
         return ResponseEntity.ok(attendeesListResponse);
+    }
+
+    @PostMapping("/{eventId}/attendees")
+    public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId, @RequestBody AttendeeRequestDTO body, UriComponentsBuilder uriComponentsBuilder) {
+        AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, body);
+
+        var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
+
+        return ResponseEntity.created(uri).body(attendeeIdDTO);
     }
 }
