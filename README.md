@@ -19,12 +19,6 @@ Após clonar o projeto com `git clone https://github.com/Azanniel/pass-in-java.g
 - Entre no arquivo `PassInApplication.java`, note que aparece um botão para execução do arquivo no canto superior direito;
 - Clique no botão para executar o projeto.
 
-## 🪄 Requisições
-
-Todos os endpoints estão sendo adicionados e executados utilizando [Hoppscotch](https://hoppscotch.io/) que é um software com o mesmo propósito que o insomnia.
-
-Você pode importar as requisições no hoppschotch usando o json a seguir: 
-
 ## 📦 Recursos
 
 Material complementar para ajudar no desenvolvimento da aplicação:
